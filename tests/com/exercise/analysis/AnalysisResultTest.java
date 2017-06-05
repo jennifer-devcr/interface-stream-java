@@ -10,6 +10,44 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AnalysisResultTest {
     @Test
+    void testAnalyseList () {
+        List<Integer> arr = new ArrayList<Integer>();
+        arr.add(1);
+        arr.add(15);
+        arr.add(5);
+        arr.add(0);
+        arr.add(2);
+        arr.add(18);
+        arr.add(30);
+
+        List<Integer> odds = new ArrayList<Integer>();
+        odds.add(1);
+        odds.add(15);
+        odds.add(5);
+
+        List<Integer> evens = new ArrayList<Integer>();
+        evens.add(0);
+        evens.add(2);
+        evens.add(18);
+        evens.add(30);
+
+        int expectedResultMean = 10;
+        int expectedResultMax = 30;
+        int expectedResultSum = 71;
+        Map<Boolean, List<Integer>> expectedResultOddsEvens = new HashMap<Boolean, List<Integer>>();
+        expectedResultOddsEvens.put(false, odds);
+        expectedResultOddsEvens.put(true, evens);
+
+        AnalysisResult result = (AnalysisResult) AnalysisResult.analyseList(arr);
+
+
+        assertEquals(expectedResultMean, result.getMeanResult());
+        assertEquals(expectedResultMax, result.getMaxResult());
+        assertEquals(expectedResultSum, result.getSumResult());
+        assertEquals(expectedResultOddsEvens, result.getOddsEvens());
+    }
+
+    @Test
     void testGetMean () {
         List<Integer> arr = new ArrayList<Integer>();
         arr.add(1);
